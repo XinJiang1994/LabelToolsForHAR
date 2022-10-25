@@ -2,6 +2,9 @@
 
 # Installation
   brew install python-tk
+  pip3 install tk
+  pip3 install opencv-python
+  pip3 install "opencv-python-headless<4.3"
   
 # Usage
 
