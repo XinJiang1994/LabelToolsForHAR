@@ -2,6 +2,19 @@
 
 # Installation
 
+## For Linux
+
+  sudo apt install python-tk
+
+  pip3 install tk
+
+  pip3 install opencv-python
+
+  pip3 install "opencv-python-headless<4.3"
+
+
+## For Mac
+
   brew install python-tk
 
   pip3 install tk
@@ -23,6 +36,8 @@
 5. If current frame belongs to the class you choose, press 1. Else press 0.
 
    press '<--' key to view previous frame, '-->' key to the next frame.
+
+6. Press q to finish labeling of current video.
 
 # Results 
 
