@@ -30,6 +30,29 @@ h: x100
 
 '''
 
+LABEL_MAP={
+'Dressing (Clothes/Shoes)':0,
+'Cleaning living area':1,
+'Grooming':2,
+'Taking medication':3,
+'Sniffing / Coughing':4,
+'Talking':5,
+'Phone call':6,
+'Writing':7,
+'Watching TV':8,
+'Social isolation':9,
+'Sitting':10,
+'Standing':11,
+'Moving in/out of chair/bed':12,
+'Walking':13,
+'Sleeping':14,
+'Stretching':15,
+'Exersicing':16,
+'Smoking':17,
+'Eating':18,
+'Driking':19
+}
+
 
 def checkdir(p):
     if not os.path.exists(p):
@@ -83,7 +106,7 @@ class Application():
         v_path=os.path.join(v_dir,vname)
         print('Processing ',v_path)
         checkdir(label_dir)
-        gt_name=vname[:-4]+'#'+self.action_class.get()+'.json'
+        gt_name=vname[:-4]+'#'+LABEL_MAP[self.action_class.get()]+'.json'
         gt={} # ground truth
         cap = cv2.VideoCapture(v_path)
         frame_count=cap.get(cv2.CAP_PROP_FRAME_COUNT)
@@ -155,73 +178,26 @@ class Application():
 if __name__=='__main__':
     win_size='600x500'
     options = [
-'cook',
-'eat',
-'stand',
-'phone call',
-'hand wave',
-'cheer up',
-'hop',
-'rub two hands',
-'nod head/bow',
-'write',
-'check time',
-'put palms together',
-'salute',
-'shake head',
-'wipe face',
-'cross hands in front',
-'hush',
-'thumb down',
-'make OK sign',
-'flick/brush hair',
-'thumb up',
-'count money',
-'cut nails',
-'make victory sign',
-'sniff/smell',
-'snap fingers',
-'squat down',
-'punch/slap',
-'kick',
-'push',
-'pat',
-'give',
-'hit',
-'carry/hold',
-'take a photo',
-'drop',
-'touch',
-'open/close',
-'play musical instrument',
-'lift/pick up',
-'paint',
-'put on/take off',
-'tear up',
-'water plants',
-'type on',
-'point to',
-'play with phone/tablet',
-'play magic cube',
-'toss a coin',
-'make up',
-'throw',
-'move',
-'arm swing',
-'jog',
-'take a shower',
-'sleep/lie',
-'aerobic exercise',
-'meditation',
-'crawl',
-'clap',
-'sit',
-'drink',
-'smile/laugh',
-'jump',
-'climb stairs',
-'chew',
-'smoke'
+'Dressing (Clothes/Shoes)',
+'Cleaning living area',
+'Grooming',
+'Taking medication',
+'Sniffing / Coughing',
+'Talking',
+'Phone call',
+'Writing',
+'Watching TV',
+'Social isolation',
+'Sitting',
+'Standing',
+'Moving in/out of chair/bed',
+'Walking',
+'Sleeping',
+'Stretching',
+'Exersicing',
+'Smoking',
+'Eating',
+'Driking'
 ]
 app=Application(win_size,options)
 
