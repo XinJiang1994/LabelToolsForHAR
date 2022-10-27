@@ -15,6 +15,8 @@
 5. If current frame belongs to the class you choose, press 1. Else press 0.
    press '<--' key to view previous frame, '-->' key to the next frame.
 
+# Results are saved in the video root folder, for example [video_root...]/2022-06-23_20-00-00/labels/
+
 # hints
 You can press the following button to set speed:
 
@@ -23,3 +25,4 @@ d: x2
 t: x10
 
 h: x100
+

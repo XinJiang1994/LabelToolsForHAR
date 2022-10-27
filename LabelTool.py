@@ -58,13 +58,13 @@ class Application():
         OptionMenu( self.root , self.action_class , *opt_list ).grid(row = 0, column = 0)
         Label(self.root,text = "Target path:").grid(row = 1, column = 0)
         Entry(self.root, textvariable = self.path).grid(row = 1, column = 1)
-        Button(self.root, text = "Select file", command = self.selectPath).grid(row = 1, column = 2)
+        Button(self.root, text = "Select data folder", command = self.selectPath).grid(row = 1, column = 2)
         Button(self.root, text = "Start labeling", command = self.start_labeling).grid(row = 1, column = 3)
 
         self.root.mainloop()
 
     def selectPath(self):
-        path_ = askdirectory()
+        path_ = askdirectory(initialdir='./')
         self.path.set(path_)
 
     def set_label(self,gt,frame_idx,speed,label):
@@ -83,7 +83,7 @@ class Application():
         v_path=os.path.join(v_dir,vname)
         print('Processing ',v_path)
         checkdir(label_dir)
-        gt_name=vname[:-4]+self.action_class.get()+'.json'
+        gt_name=vname[:-4]+'#'+self.action_class.get()+'.json'
         gt={} # ground truth
         cap = cv2.VideoCapture(v_path)
         frame_count=cap.get(cv2.CAP_PROP_FRAME_COUNT)
@@ -105,6 +105,8 @@ class Application():
 
             message = f'{frame_no}|{frame_count-1}, FPS:{fps} | cur label:[{lab}]'
             cv2.putText(frame, message, (30, 60), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 255, 0),thickness=2)
+            cv2.putText(frame, f'speed: {speed}', (30, 120), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (0, 255, 0),thickness=2)
+
             cv2.imshow('Depth Map',frame)
             key=cv2.waitKey(100000)
             print(key)
@@ -120,10 +122,10 @@ class Application():
                 print('2 is pressed')
                 self.set_label(gt,frame_no,speed,2)
                 frame_no=min(frame_no+speed,frame_count-1)
-            elif key==81: # left
+            elif key==2: # left
                 speed=1
                 frame_no=max(frame_no-1,0)
-            elif key==83: # right
+            elif key==3: # right
                 speed=1
                 frame_no+=1
             elif key==ord('d'):
@@ -145,10 +147,7 @@ class Application():
         print("Start labeling...# v_dir=",v_dir)
         for vname in vnames:
             label_dir=os.path.join(v_dir,'labels')
-            self.label_one(v_dir,vname,label_dir)
-            
-
-        
+            self.label_one(v_dir,vname,label_dir)     
         cv2.destroyAllWindows()
 
 
