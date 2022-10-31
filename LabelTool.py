@@ -102,12 +102,21 @@ class Application():
                 gt[idx]=label
         return gt
 
+    def load_ground_truth_file(label_dir,gt_name):
+        json_path=os.path.join(label_dir,gt_name)
+        # 判断 json_path是否存在，
+        # 如果json_path不存在，则 return {}
+        # 否则加载 json文件，存储到dict中，返回加载的dict
+
+
+
     def label_one(self,v_dir,vname,label_dir):
         v_path=os.path.join(v_dir,vname)
         print('Processing ',v_path)
         checkdir(label_dir)
         gt_name=vname[:-4]+'#'+LABEL_MAP[self.action_class.get()]+'.json'
-        gt={} # ground truth
+        # gt={}
+        gt=self.load_ground_truth_file(label_dir,gt_name) # ground truth
         cap = cv2.VideoCapture(v_path)
         frame_count=cap.get(cv2.CAP_PROP_FRAME_COUNT)
         fps = cap.get(cv2.CAP_PROP_FPS)
