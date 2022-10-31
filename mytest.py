@@ -128,6 +128,7 @@ class Application():
         frame_count=cap.get(cv2.CAP_PROP_FRAME_COUNT)
         fps = cap.get(cv2.CAP_PROP_FPS)
         size = (int(cap.get(cv2.CAP_PROP_FRAME_WIDTH)),int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT)))
+        if 
         frame_no=0
         st_time=time.time()
         speed=1
