@@ -30,28 +30,55 @@ h: x100
 
 '''
 
+# LABEL_MAP={
+# 'Dressing (Clothes/Shoes)':0,
+# 'Cleaning living area':1,
+# 'Grooming':2,
+# 'Taking medication':3,
+# 'Sniffing / Coughing':4,
+# 'Talking':5,
+# 'Phone call':6,
+# 'Writing':7,
+# 'Watching TV':8,
+# 'Social isolation':9,
+# 'Sitting':10,
+# 'Standing':11,
+# 'Moving in/out of chair/bed':12,
+# 'Walking':13,
+# 'Sleeping':14,
+# 'Stretching':15,
+# 'Exersicing':16,
+# 'Smoking':17,
+# 'Eating':18,
+# 'Driking':19
+# }
+
 LABEL_MAP={
-'Dressing (Clothes/Shoes)':0,
-'Cleaning living area':1,
-'Grooming':2,
-'Taking medication':3,
-'Sniffing / Coughing':4,
-'Talking':5,
-'Phone call':6,
-'Writing':7,
-'Watching TV':8,
-'Social isolation':9,
-'Sitting':10,
-'Standing':11,
-'Moving in/out of chair/bed':12,
-'Walking':13,
-'Sleeping':14,
-'Stretching':15,
-'Exersicing':16,
-'Smoking':17,
-'Eating':18,
-'Driking':19
+"没人/老人不在": -2,
+"静态动作": -1,
+"在做一些动作（但不属于1-15中任何一个）": 0,
+"穿 脱衣服/裤子/鞋子": 1,
+"拿/取/搬运/放东西": 2,
+"做清洁/打扫房间": 3,
+"摸脑袋/整理头发/梳妆打扮":4 ,
+"搓手/擦手": 5,
+"喝水": 6,
+"吃药/吃东西":7 ,
+"吸烟": 8,
+"打喷嚏/咳嗽":9 ,
+"写东西": 10,
+"看电视": 11,
+"使用手机：玩手机/语音视频通话等": 12,
+"锻炼/运动": 13,
+"和人交流/说话/玩/社交（比如打牌打麻将）": 14,
+"伸懒腰/拉伸": 15,
+"走动 ": 16,
+"坐（包括趴卓子上）":17 ,
+"站": 18,
+"睡觉/躺":19 ,
+"从椅子/床上起来/坐下的过渡状态": 20
 }
+
 
 
 def checkdir(p):
@@ -193,28 +220,7 @@ class Application():
 
 if __name__=='__main__':
     win_size='600x500'
-    options = [
-'Dressing (Clothes/Shoes)',
-'Cleaning living area',
-'Grooming',
-'Taking medication',
-'Sniffing / Coughing',
-'Talking',
-'Phone call',
-'Writing',
-'Watching TV',
-'Social isolation',
-'Sitting',
-'Standing',
-'Moving in/out of chair/bed',
-'Walking',
-'Sleeping',
-'Stretching',
-'Exersicing',
-'Smoking',
-'Eating',
-'Driking'
-]
+    options = list(LABEL_MAP.keys())
 app=Application(win_size,options)
 
 
