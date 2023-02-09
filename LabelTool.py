@@ -114,7 +114,7 @@ class Application():
         self.root.mainloop()
 
     def selectPath(self):
-        path_ = askdirectory(initialdir='./')
+        path_ = askdirectory(initialdir='/mnt/ssd/data/depth')
         self.path.set(path_)
 
     def set_label(self,gt,frame_idx,speed,label):
